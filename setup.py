@@ -4,6 +4,7 @@ from cx_Freeze import setup, Executable
 
 include_files = [
     './README.md',
+    './example/',
     ]
 
 build_exe_options = {
