@@ -1,0 +1,29 @@
+{
+    "music": [
+        {
+            "audioPath": "Bob Roberts - Do, Re, Mi, Fa, So, La, Ti, Do.ogg",
+            "texturePath": "record1.png",
+            "useSpecialName" : true,
+            "specialName" : "Do, Re, Mi, Fa, So, La, Ti, Do"
+        },
+        {
+            "audioPath": "Frank Crumit - Stumbling.ogg",
+            "texturePath": "record2.png",
+            "isShiny" : true
+        },
+        {
+            "audioPath": "Great_White_Way_Orchestra_-_Yes_We_Have_No_Bananas.ogg",
+            "texturePath": "record3.png",
+            "description" : "Yes, We Have No Bananas",
+            "hasLore" : true,
+            "lore" : "Instrumental version"
+        }
+        
+    ],
+    "pack_info": {
+        "packAuthor": "Me",
+        "packName": "Example Pack",
+        "description" : "An Example Pack using old Public Domain Music.",
+        "thumbnailPath" : null
+    }
+}
