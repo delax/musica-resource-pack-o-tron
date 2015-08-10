@@ -195,7 +195,8 @@ def _makePack(music, pack_info, outputdir):
     # make text files
     _makeTextFiles(folder, music, pack_info)
     # copy non-text files
-    _copyFiles(folder, audioPaths, music.keys(), texturePaths, pack_info.get('thumbnailPath'))
+    _copyFiles(folder, audioPaths, music.keys(), texturePaths,
+               Path(pack_info['thumbnailPath']) if ('thumbnailPath' in pack_info) else None)
     # compress directory
     _zipUpFolder(folder,outputdir)
     rmtree(str(folder))
