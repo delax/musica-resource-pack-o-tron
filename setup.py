@@ -12,11 +12,11 @@ build_exe_options = {
     }
 
 executables = [
-    Executable('musica_resource_pack-o-tron.py'),
+    Executable('musica_resource_packotron.py'),
     ]
 
 setup(
-    name = 'musica_resource_pack-o-tron',
+    name = 'musica_resource_packotron',
     version = '1.0',
     description = 'Helper tool to make resource packs for the Minecraft mod Musica.',
     options = {'build_exe' : build_exe_options},
