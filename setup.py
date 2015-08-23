@@ -13,6 +13,7 @@ build_exe_options = {
 
 executables = [
     Executable('musica_resource_packotron.py'),
+    Executable('resource_pack_gui.py'),
     ]
 
 setup(

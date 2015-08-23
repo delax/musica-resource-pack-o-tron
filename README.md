@@ -11,15 +11,17 @@ Includes an Example folder, with a json file and old Public Domain music.
 
 ### Built version:
 * Usage:
-  * To run terminal: `musica_resource_packotron.exe`
-    * For terminal's built-in help: `musica_resource_packotron.exe --help`
+  * To run gui: use `resource_pack_gui.exe`
+  * To run terminal: `musica_resource_pack-o-tron.exe`
+    * For terminal's built-in help: `musica_resource_pack-o-tron.exe --help`
 
 ### Unbuilt version:
 * Requires:
   * Python 3.4+
 * Usage:
-  * To run terminal: `musica_resource_packotron.py`
-    * For terminal's built-in help: `musica_resource_packotron.py --help`
+  * To run gui: `resource_pack_gui.py`
+  * To run terminal: `musica_resource_pack-o-tron.py`
+    * For terminal's built-in help: `musica_resource_pack-o-tron.py --help`
 
 ## Building
 * Requires:
