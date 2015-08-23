@@ -34,20 +34,28 @@ class MusicaApp(ttk.Frame):
         'output dir' : 'Resource Pack will be written into this directory. (default: "./")',
         }
 
-    def __init__(self, master=None, default_texture=None, **kwds):
+    def __init__(self, master=None, **kwds):
         super().__init__(master, **kwds)
 
-        self.default_record_texture = default_texture
-        if default_texture is not None:
-            self.helptexts['texture path'] += ' Defaults to "%s".' % default_texture
+        self.default_record_texture = None
 
         framekwds = {'padding' : '3 3 12 12'}
 
-##        # menu
-##        menubar = Menu(master)
-##        menu_file = Menu(menubar)
-##        menubar.add_cascade(menu=menu_file, label='File')
-##        master.config(menu=menubar)
+        # menu
+        menubar = Menu(master)
+        menu_default_texture = Menu(menubar)
+
+        def set_default_texture(*args):
+             self.default_record_texture = Path( filedialog.askopenfilename(filetypes=[('PNG', '*.png')]) )
+
+        def clear_default_texture(*args):
+            self.default_record_texture = None
+
+        
+        menu_default_texture.add_command(label='Set...', command=set_default_texture)
+        menu_default_texture.add_command(label='Clear', command=clear_default_texture)
+        menubar.add_cascade(menu=menu_default_texture, label='Default Record Texture')
+        master.config(menu=menubar)
 
         notebook = ttk.Notebook(self)
 
@@ -121,7 +129,6 @@ class MusicaApp(ttk.Frame):
 
     def make_pack(self):
         """Do the actual work here"""
-        import json
         
         pack_info = {
             'packAuthor' : self.packinfovars['author'].get(),
@@ -181,7 +188,7 @@ class MusicaApp(ttk.Frame):
         '''Make the Music frame'''
         musicframe = ttk.Frame(master)
 
-        default_texture = self.default_record_texture
+        self.default_record_texture
 
         self.trackid = None
 
@@ -217,7 +224,7 @@ class MusicaApp(ttk.Frame):
                 self.musicdictlist.append( {
                     'description' : path.stem,
                     'audio path' : path,
-                    'texture path' : '' if default_texture is None else Path(default_texture).resolve(),
+                    'texture path' : '' if self.default_record_texture is None else Path(self.default_record_texture).resolve(),
                     } )
             musicnamelistvar.set(
                 tuple( map(lambda x : x['description'], self.musicdictlist) )
