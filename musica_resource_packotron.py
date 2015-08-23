@@ -200,8 +200,6 @@ def _makePack(music, pack_info, outputdir):
     # compress directory
     _zipUpFolder(folder,outputdir)
     rmtree(str(folder))
-    print("Pack written at '%s'." % (outputdir / folder.with_suffix('.rpack.zip').name))
-    print(r"Move to resource folder ('\minecraft\resourcepacks\') and turn on in options to use.")
 
 def _createArgParser():
     parser = argparse.ArgumentParser(
@@ -307,6 +305,8 @@ if __name__ == '__main__':
             music = _fillInfo(audioPaths, texturePaths, fileinfo)
 
         _makePack(music, pack_info, outputdir)
+        print("Pack written in '%s'." % outputdir)
+        print(r"Move to resource folder ('\minecraft\resourcepacks\') and turn on in options to use.")
     else:
         parser.print_help()
 
