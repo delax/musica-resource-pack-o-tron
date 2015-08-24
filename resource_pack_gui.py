@@ -163,7 +163,7 @@ class MusicaApp(ttk.Frame):
         outputdir = Path( self.outputdirvar.get() ).resolve()
 
         # Some bad data handling
-        print(self.packinfovars['thumbnail path'].get())
+        
         # errors
         if not outputdir.is_dir():
             messagebox.showerror(title='Error: Bad Data', message='Output directory does not exist.')
