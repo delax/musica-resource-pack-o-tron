@@ -19,7 +19,7 @@ executables = [
 
 setup(
     name = 'musica_resource_packotron',
-    version = '1.0',
+    version = '1.3',
     description = 'Helper tool to make resource packs for the Minecraft mod Musica.',
     options = {'build_exe' : build_exe_options},
     executables = executables,
