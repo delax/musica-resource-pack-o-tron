@@ -446,10 +446,29 @@ class MusicaApp(ttk.Frame):
         
 
 if __name__ == '__main__':
+    from sys import platform
+    
     root = Tk()
     root.title('Musica Resource Pack-o-tron')
-    root.iconbitmap(default='pack-o-tron.ico')
     root.option_add('*tearOff', FALSE)
+
+    # add icon, depending on platform
+    # Windows
+    if platform.startswith('win32'):
+        icon_path = Path('resources','pack-o-tron.ico')
+    # Ubuntu
+    elif platform.startswith('ubuntu'):
+        icon_path = Path('resources', 'pack-o-tron.xbm')
+    else:
+        icon_path = None
+
+    # Soft failure if missing icons
+    if icon_path is not None and icon_path.is_file():
+        icon_path = icon_path.resolve()
+    else:
+        icon_path = None
+    
+    root.iconbitmap(str(icon_path) if icon_path else icon_path)
 
     # Main Background Frame
     main_frame = MusicaApp(root)

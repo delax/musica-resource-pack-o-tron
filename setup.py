@@ -1,9 +1,11 @@
 #! python3
 
 from cx_Freeze import setup, Executable
+from pathlib import Path
+from sys import platform
 
 include_files = [
-    './pack-o-tron.ico',
+    './resources/',
     './README.md',
     './example/',
     ]
@@ -12,9 +14,23 @@ build_exe_options = {
     'include_files' : include_files,
     }
 
+# set icons only for windows
+if platform.startswith('win32'):
+    icon_path = Path('resources', 'pack-o-tron.ico').resolve()
+    base = "Win32GUI"
+else:
+    base = None
+    icon_path = None
+
 executables = [
-    Executable('musica_resource_packotron.py', icon='pack-o-tron.ico'),
-    Executable('resource_pack_gui.py', icon='pack-o-tron.ico'),
+    Executable('musica_resource_packotron.py',
+               base=base,
+               icon=str(icon_path) if icon_path else icon_path,
+               ),
+    Executable('resource_pack_gui.py',
+               base=base,
+               icon=str(icon_path) if icon_path else icon_path,
+               ),
     ]
 
 setup(
