@@ -448,6 +448,7 @@ class MusicaApp(ttk.Frame):
 if __name__ == '__main__':
     root = Tk()
     root.title('Musica Resource Pack-o-tron')
+    root.iconbitmap(default='pack-o-tron.ico')
     root.option_add('*tearOff', FALSE)
 
     # Main Background Frame

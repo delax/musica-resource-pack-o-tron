@@ -3,6 +3,7 @@
 from cx_Freeze import setup, Executable
 
 include_files = [
+    './pack-o-tron.ico',
     './README.md',
     './example/',
     ]
@@ -12,8 +13,8 @@ build_exe_options = {
     }
 
 executables = [
-    Executable('musica_resource_packotron.py'),
-    Executable('resource_pack_gui.py'),
+    Executable('musica_resource_packotron.py', icon='pack-o-tron.ico'),
+    Executable('resource_pack_gui.py', icon='pack-o-tron.ico'),
     ]
 
 setup(
