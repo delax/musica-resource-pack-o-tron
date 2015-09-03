@@ -18,8 +18,8 @@ class MusicaApp(ttk.Frame):
         'pack name' : 'The name of the resource pack.',
         'pack author' : 'The author of the resource pack.',
         'pack description' : 'The description of the resource pack.',
-        'track description' : 'The description of the in-game Record item, which otherwise uses the ' \
-            + 'filename without the (.ogg) suffix.',
+        'track description' : 'The description of the in-game Record item(s), often of the form "Artist - Title".' \
+            + ' This otherwise uses the filename without the (.ogg) suffix.',
         'music listbox' : 'The list of the tracks by description, clicking one will fill the track info entries ' \
             + 'with its own info.',
         'add track' : 'Choose one or more audio-files and add to the track list.',
