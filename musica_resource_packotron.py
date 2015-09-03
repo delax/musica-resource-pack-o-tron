@@ -236,8 +236,9 @@ def _createArgParser():
 
     # [-l musicdesc]
     parser_cl.add_argument('-l', '--musicdesc', nargs='+', action='append',
-                        help='The description of the in-game Record item(s), which otherwise uses the ' \
-                        + 'filename without the (.ogg) suffix.')
+                        help='The description of the in-game Record item(s), often of the form ' \
+                        + '"Artist - Title". This otherwise uses the filename without the ' \
+                        + '(.ogg) suffix.')
 
     # pack metadata
     pack_metadata_group = parser_cl.add_argument_group('Pack metadata arguments',
