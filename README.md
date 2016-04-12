@@ -1,7 +1,7 @@
 ﻿Musica Resource Pack-o-tron
 ==================================
 
-Helper tool to make resource packs for the Minecraft mod [Musica](http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2407730).
+Helper tool to make resource packs for the Minecraft mod [Musica](http://minecraft.curseforge.com/projects/musica-a-custom-record-loader).
 
 Uses [Python 3.4+](http://python.org/).
 
