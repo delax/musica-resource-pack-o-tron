@@ -127,6 +127,15 @@ class MusicaApp(ttk.Frame):
             widget.bind('<Enter>', show_help)
             widget.bind('<Leave>', clear_help)
 
+    def _show_error(self, errortype, message):
+        """show an error message box with a message."""
+        messagebox.showerror(title='Error: ' + errortype,
+                             message=message)
+
+    def _show_warning(self, message):
+        """show a warning message box with a message"""
+        messagebox.showwarning(title='Warning', message=message)
+
     def make_pack(self):
         """Do the actual work here"""
         
@@ -141,6 +150,8 @@ class MusicaApp(ttk.Frame):
             pack_info['thumbnailPath'] = Path( self.packinfovars['thumbnail path'].get() ).resolve()
         
         music = dict()
+        skipped_tracks = list()
+        
         for track in self.musicdictlist:
             d = {
                 'audioPath' : Path( track['audio path'] ).resolve(),
@@ -159,6 +170,9 @@ class MusicaApp(ttk.Frame):
             if Path(d['audioPath']).is_file() and d['texturePath'].is_file():
                 clean_name = mt._processFilename(d['audioPath'].stem)
                 music[clean_name] = d
+            else:
+                # keep info on what we didnt use
+                skipped_tracks.append(track)
 
         outputdir = Path( self.outputdirvar.get() ).resolve()
 
@@ -166,21 +180,25 @@ class MusicaApp(ttk.Frame):
         
         # errors
         if not outputdir.is_dir():
-            messagebox.showerror(title='Error: Bad Data', message='Output directory does not exist.')
+            self._show_error('Bad Data', 'Output directory does not exist.')
         elif len(music) == 0:
             if len(self.musicdictlist) == 0:
-                messagebox.showerror(title='Error: Bad Data', message='Track list is empty.')
+                self._show_error('Bad Data', 'Track list is empty.')
             else:
-                messagebox.showerror(title='Error: Bad Data', message='Track list does not contain any tracks with proper Audio and Texture files.')
+                self._show_error('Bad Data','Track list does not contain any tracks with proper Audio and Texture files.')
         elif pack_info['packName'] == '':
-            messagebox.showerror(title='Error: Bad Data', message='Pack has no name.')
+           self._show_error('Bad Data', 'Pack has no name.')
         else:
             # warnings
-            if len(self.musicdictlist) != len(music):
-                messagebox.showwarning(title='Warning', message='Several tracks were skipped due to improper data.')
+            if len(skipped_tracks) > 0:
+                self._show_warning('%s of %s track(s) were skipped due to improper data.'
+                                   % (len(skipped_tracks), len(self.musicdictlist))
+                                   )
             if pack_info['thumbnailPath'] is None and self.packinfovars['thumbnail path'].get() != '':
-                messagebox.showwarning(title='Warning', message='Given Thumbnail file does not exist, defaulting to None.')
+                self._show_warning('Given Thumbnail file does not exist. Defaulted to None.')
+            # make the pack
             mt._makePack(music, pack_info, outputdir)
+            # show message on info bar
             self.helptextvar.set("Pack written in '%s'." % outputdir \
                 + "\nMove to resource folder ('\\minecraft\\resourcepacks\\') and turn on in options to use.")
 
